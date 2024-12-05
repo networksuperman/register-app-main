@@ -13,7 +13,7 @@ pipeline {
             IMAGE_NAME = "${DOCKER_USER}" + "/" + "${APP_NAME}"
             IMAGE_TAG = "${RELEASE}-${BUILD_NUMBER}"	    
     }
-    
+
     stages {
         stage("Cleanup Workspace") {
             steps {
@@ -73,6 +73,14 @@ pipeline {
                 }
             }
 
+       }
+
+       stage("Trivy Scan") {
+           steps {
+               script {
+	            sh ('docker run -v /var/run/docker.sock:/var/run/docker.sock aquasec/trivy image networkdockering/register-app-pipeline:latest --no-progress --scanners vuln  --exit-code 0 --severity HIGH,CRITICAL --format table')
+               }
+           }
        }
 
     }
