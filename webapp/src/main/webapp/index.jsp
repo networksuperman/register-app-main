@@ -31,6 +31,6 @@
     <p>Already have an account? <a href="#">Sign in</a>.</p>
   </div>
    <br>
-   <h1>Welcome to Devopslife.ru</h1>
+   <h1>Welcome to Devopslife.ru - v1</h1>
    <br>
 </form>
